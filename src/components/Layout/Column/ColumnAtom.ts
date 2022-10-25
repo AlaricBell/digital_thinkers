@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Breakpoints } from "../../../enums/base/Variables";
+import { Breakpoints } from "../../../types/variables";
 
 interface ColumnProp {
   size?: number;

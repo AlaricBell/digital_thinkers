@@ -3,14 +3,14 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { example } from "../store/user/userSlice";
-import { exampleSelector } from "../store/user/userSelectors";
+import { example } from "../store/driver/driverSlice";
+import { driverSelector } from "../store/driver/driverSelectors";
 import { Column } from "../components/Layout/Column/ColumnAtom";
 import { Row } from "../components/Layout/Row/RowAtom";
 import { Container } from "../components/Layout/Container/ContainerAtom";
 
 const Home: NextPage = () => {
-  const { valueExample } = useSelector(exampleSelector);
+  const { valueExample } = useSelector(driverSelector);
   const dispatch = useDispatch();
 
   return (

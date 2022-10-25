@@ -1,1 +1,0 @@
-export const exampleSelector = (state: any) => state.user;
