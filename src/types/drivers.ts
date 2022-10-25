@@ -5,6 +5,6 @@ export type Driver = {
   lastname: string;
   country: string;
   team: string;
-  imgUrl: string;
+  imgUrl?: string;
   place?: number;
 };
