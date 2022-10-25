@@ -11,6 +11,7 @@ interface ColumnProp {
 export const Column = styled.div<ColumnProp>`
   position: relative;
   width: 100%;
+  padding: 0.75rem;
   flex: 0 0 ${({ size }) => ((size || 12) / 12) * 100}%;
   max-width: ${({ size }) => ((size || 12) / 12) * 100}%;
 
