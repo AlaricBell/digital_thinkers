@@ -3,17 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const driverSlice = createSlice({
   name: "driver",
   initialState: {
-    valueExample: 0,
+    driversData: [],
   },
   reducers: {
-    example: (state) => {
-      state.valueExample += 1;
-    },
-    exampleWithAction: (state, action) => {
-      state.valueExample = action.payload;
+    setDrivers: (state, action) => {
+      state.driversData = action.payload;
     },
   },
 });
 
 export const { reducer, actions } = driverSlice;
-export const { example, exampleWithAction } = driverSlice.actions;
+export const { setDrivers } = driverSlice.actions;

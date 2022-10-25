@@ -1,7 +1,7 @@
 import type { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 import { useSelector, useDispatch } from "react-redux";
-import { example } from "../../store/driver/driverSlice";
+import { setDrivers } from "../../store/driver/driverSlice";
 import { driverSelector } from "../../store/driver/driverSelectors";
 import { Column } from "../../components/Layout/Column/ColumnAtom";
 import { Row } from "../../components/Layout/Row/RowAtom";
@@ -13,7 +13,6 @@ import { useEffect } from "react";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const drivers = await axios.get(`${process.env.PUBLIC_BASE_URL}/api/drivers`);
-  console.log(drivers.data);
   return {
     props: {
       drivers: drivers.data,
@@ -22,11 +21,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 const Home: NextPage<{ drivers: Driver[] }> = ({ drivers }) => {
-  const { valueExample } = useSelector(driverSelector);
+  const { driversData } = useSelector(driverSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(drivers);
+    dispatch(setDrivers(drivers));
   }, []);
 
   return (
@@ -39,19 +38,15 @@ const Home: NextPage<{ drivers: Driver[] }> = ({ drivers }) => {
 
       <main>
         <Container>
-          <Row>
-            {drivers.map((driver, index) => {
-              // console.log(driver);
-              return (
+          {driversData.length && (
+            <Row>
+              {driversData.map((driver: Driver, index: number) => (
                 <Column key={index} size={12} md={6} lg={3}>
                   <DriverCard data={driver} />
                 </Column>
-              );
-            })}
-          </Row>
-          <a onClick={() => dispatch(example())}>
-            <h2>REDUX TEST {valueExample}</h2>
-          </a>
+              ))}
+            </Row>
+          )}
         </Container>
       </main>
     </div>

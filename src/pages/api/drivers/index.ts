@@ -4,6 +4,7 @@ import {
   getDriverData,
   assignStaticImageToDrivers,
   getSortedDrivers,
+  setDriverData,
 } from "../../../lib/driverHandler";
 
 export default async function handler(
@@ -11,7 +12,8 @@ export default async function handler(
   res: NextApiResponse<Driver[]>
 ) {
   console.log("retrieving driver data...");
-  const objectData: Driver[] = getSortedDrivers(getDriverData());
+  const objectData: Driver[] = assignStaticImageToDrivers(getDriverData());
+  setDriverData(objectData);
   console.log("received driver data");
-  res.status(200).json(assignStaticImageToDrivers(objectData));
+  res.status(200).json(getSortedDrivers(objectData));
 }

@@ -1,15 +1,18 @@
 import { setLocalData, getLocalData } from "./fileHandler";
 import { Driver } from "../types/drivers";
-import path from "path";
 
-export const assignPlaceToDrivers = (drivers: Driver[]): Driver[] => {
-  const driversWithPlace: Driver[] = drivers.map((driver, index) => {
+export const assignPlaceToDrivers = (currentPlace: number): Driver[] => {
+  const driversWithNewPlace: Driver[] = getDriverData().map((driver, index) => {
+    if (driver.place === currentPlace) {
+      return { ...driver, place: currentPlace - 1 };
+    } else if (driver.place === currentPlace - 1) {
+      return { ...driver, place: currentPlace };
+    }
     return {
       ...driver,
-      place: Math.ceil(Math.random() * (drivers.length - 0) + 0),
     };
   });
-  return driversWithPlace;
+  return driversWithNewPlace;
 };
 
 export const assignStaticImageToDrivers = (drivers: Driver[]): Driver[] => {
