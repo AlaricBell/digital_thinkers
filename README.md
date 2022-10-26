@@ -1,8 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Project Setup
 
-## Getting Started
+First, Install the dependencies:
 
-First, run the development server:
+```bash
+npm i
+# or
+yarn
+```
+
+Make sure your `.env` variables are set and run the development server:
 
 ```bash
 npm run dev
@@ -12,23 +18,22 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+**API routes** are prefixed with `/api/*` and can be accessed on [http://localhost:3000/api/drivers](http://localhost:3000/api/drivers).
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Approach
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- ### Design
 
-## Learn More
+  My aim was to create an atomic design structure where each element can be reintroduced in different context.
+  To achieve that I decided to use CSS in JS solution with [Styled Components](https://styled-components.com/), that allowed me to define each individual element for generic use-case like in the `src\components\Layout` folder where the responsive layout was created by 3 individual component (_Container/Row/Column_).
 
-To learn more about Next.js, take a look at the following resources:
+- ### Modularity
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  I was focusing on creating modular solutions for generic usecases as much as possible, these services can be imported from `src\lib`.
+  Constants and type definitions can be imported from `src\types`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- ### Database
 
-## Deploy on Vercel
+  Due to limited time I had no opportunity to introduce a database to the project. At the moment the data is stored locally on the frontend on [Redux](https://redux.js.org/) and [Redux-Toolkit](https://redux-toolkit.js.org/) with the exception of placement changes at **startup** and **runtime** where I directly modified the JSON to add the `place` fields in order to access the changes on the backend. I had the option to just add another object to the mix and change it there in the hope of implementing a database later on but in the end it added some more complexity to the task, so I figured why not do that.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  Since the **Image URLs** can be calculated based on existing data, this field is completely provided by the backend and is not changed directly anywhere.
