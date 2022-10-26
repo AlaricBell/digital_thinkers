@@ -2,7 +2,7 @@ import { setLocalData, getLocalData } from "./fileHandler";
 import { Driver } from "../types/drivers";
 
 export const assignPlaceToDrivers = (currentPlace: number): Driver[] => {
-  const driversWithNewPlace: Driver[] = getDriverData().map((driver, index) => {
+  const driversWithNewPlace: Driver[] = getDriverData().map((driver) => {
     if (driver.place === currentPlace) {
       return { ...driver, place: currentPlace - 1 };
     } else if (driver.place === currentPlace - 1) {
@@ -15,8 +15,28 @@ export const assignPlaceToDrivers = (currentPlace: number): Driver[] => {
   return driversWithNewPlace;
 };
 
+export const assignCustomPlaceToDrivers = (
+  currentPlace: number,
+  addedPlace: number
+): Driver[] => {
+  const driversWithNewPlace: Driver[] = getDriverData().map((driver) => {
+    if (driver.place === currentPlace) {
+      return { ...driver, place: currentPlace - addedPlace };
+    } else if (
+      driver.place < currentPlace &&
+      driver.place >= currentPlace - addedPlace
+    ) {
+      return { ...driver, place: driver.place + 1 };
+    }
+    return {
+      ...driver,
+    };
+  });
+  return driversWithNewPlace;
+};
+
 export const assignStaticImageToDrivers = (drivers: Driver[]): Driver[] => {
-  const driversWithImage: Driver[] = drivers.map((driver, index) => {
+  const driversWithImage: Driver[] = drivers.map((driver) => {
     return {
       ...driver,
       imgUrl: `/assets/formula1/${driver.code.toLowerCase()}.png`,

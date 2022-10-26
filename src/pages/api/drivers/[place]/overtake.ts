@@ -3,6 +3,7 @@ import { Driver } from "../../../../types/drivers";
 import { Error } from "../../../../types/error";
 import {
   assignPlaceToDrivers,
+  assignCustomPlaceToDrivers,
   setDriverData,
   getSortedDrivers,
 } from "../../../../lib/driverHandler";
@@ -15,9 +16,19 @@ export default async function handler(
     const {
       query: { place },
     } = req;
-    const objectData: Driver[] = assignPlaceToDrivers(Number(place));
+    const { added } = req.body;
+
+    const objectData: Driver[] = added
+      ? assignCustomPlaceToDrivers(Number(place), Number(added))
+      : assignPlaceToDrivers(Number(place));
     setDriverData(objectData);
-    console.log("received driver data", place);
+
+    console.log(
+      `Driver overtook the ${
+        added ? Number(place) - Number(added) : Number(place) - 1
+      }# place`
+    );
+
     res.status(200).json(getSortedDrivers(objectData));
   } else {
     res.status(405).json({ message: "Request Method not allowed" });

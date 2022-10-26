@@ -5,6 +5,7 @@ import { setDrivers } from "../../../store/driver/driverSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import DriverInput from "./DriverInput";
 
 const DriverCard: React.FC<{ data: Driver }> = ({ data }) => {
   const dispatch = useDispatch();
@@ -29,8 +30,9 @@ const DriverCard: React.FC<{ data: Driver }> = ({ data }) => {
         >
           <FontAwesomeIcon icon={faChevronLeft} />
         </S.DriverButton>
-        <S.DriverNumber>{data.place}#</S.DriverNumber>
+        <DriverInput currentPlace={data.place} />
       </S.DriverFooter>
+      <S.DriverNumber>{data.place}#</S.DriverNumber>
       <S.CountryImage src={`https://countryflagsapi.com/png/${data.country}`} />
     </S.DriverCard>
   );

@@ -22,6 +22,64 @@ export const DriverFooter = styled.div`
   align-items: center;
 `;
 
+export const DriverPlaceSetterContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > input {
+    height: 3rem;
+    width: 3rem;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+    color: ${Colors.Primary};
+    background: ${Colors.White};
+    border: none;
+    outline: none;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  & > button {
+    height: 3rem;
+    width: 3rem;
+    font-weight: 700;
+    color: ${Colors.Primary};
+    padding: 0.5rem 1rem;
+    background: ${Colors.TextPrimary};
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &:hover {
+      color: ${Colors.White};
+    }
+
+    &:disabled {
+      color: ${Colors.Primary};
+      cursor: not-allowed;
+    }
+  }
+`;
+
 export const DriverTitle = styled.h1`
   font-size: 2.5rem;
   font-weight: 700;
@@ -30,10 +88,13 @@ export const DriverTitle = styled.h1`
 `;
 
 export const DriverNumber = styled.p`
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: ${Colors.TextPrimary};
   margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0.5rem;
 `;
 
 export const DriverButton = styled.button`
@@ -45,6 +106,9 @@ export const DriverButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   svg {
     width: 2rem;
@@ -67,7 +131,7 @@ export const DriverImage = styled.img`
 `;
 
 export const CountryImage = styled.img`
-  width: 60px;
+  width: 65px;
   height: 40px;
   margin: 0 auto;
   position: absolute;
