@@ -24,11 +24,10 @@ export default async function handler(
     setDriverData(objectData);
 
     console.log(
-      `Driver overtook the ${
+      `Driver #${place} overtook the #${
         added ? Number(place) - Number(added) : Number(place) - 1
-      }# place`
+      } place`
     );
-
     res.status(200).json(getSortedDrivers(objectData));
   } else {
     res.status(405).json({ message: "Request Method not allowed" });

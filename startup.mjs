@@ -29,4 +29,4 @@ fs.writeFileSync(
   path.join(process.cwd(), "public", "assets", "formula1", "drivers.json"),
   JSON.stringify(driverData)
 );
-console.log("place and imgUrl was modified in drivers.json");
+console.log("place was modified in drivers.json");
