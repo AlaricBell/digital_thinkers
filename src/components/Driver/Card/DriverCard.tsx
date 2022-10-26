@@ -2,12 +2,14 @@ import { Driver } from "../../../types/drivers";
 import * as S from "./DriverCardAtom";
 import { useDispatch } from "react-redux";
 import { setDrivers } from "../../../store/driver/driverSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 const DriverCard: React.FC<{ data: Driver }> = ({ data }) => {
   const dispatch = useDispatch();
 
-  const overtakePlayer = async (place: number) => {
+  const overtakeDriver = async (place: number) => {
     const newDriverPlaces = await axios.post(
       `/api/drivers/${data.place}/overtake`
     );
@@ -23,13 +25,13 @@ const DriverCard: React.FC<{ data: Driver }> = ({ data }) => {
       <S.DriverFooter>
         <S.DriverButton
           disabled={data.place === 1}
-          onClick={() => overtakePlayer(data.place)}
+          onClick={() => overtakeDriver(data.place)}
         >
-          +
+          <FontAwesomeIcon icon={faChevronLeft} />
         </S.DriverButton>
         <S.DriverNumber>{data.place}#</S.DriverNumber>
-        <S.DriverButton>-</S.DriverButton>
       </S.DriverFooter>
+      <S.CountryImage src={`https://countryflagsapi.com/png/${data.country}`} />
     </S.DriverCard>
   );
 };

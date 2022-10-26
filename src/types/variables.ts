@@ -1,14 +1,14 @@
 export enum Colors {
-  Primary = "#261275",
-  Secondary = "#3d2a83",
+  Primary = "#00060D",
+  Secondary = "#061426",
   White = "#ffffff",
-  Dark = "#73d597",
-  Highlight = "#cc0051",
+  Dark = "#172D40",
+  Highlight = "#122640",
+  TextPrimary = "#A1A2A6",
 }
 
 export enum Breakpoints {
   Small = "576px",
   Medium = "768px",
-  Large = "992px",
-  Ultra = "1200px",
+  Large = "1100px",
 }

@@ -13,7 +13,6 @@ export default async function handler(
 ) {
   console.log("retrieving driver data...");
   const objectData: Driver[] = assignStaticImageToDrivers(getDriverData());
-  setDriverData(objectData);
   console.log("received driver data");
   res.status(200).json(getSortedDrivers(objectData));
 }

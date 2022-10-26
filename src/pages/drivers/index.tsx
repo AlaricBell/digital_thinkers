@@ -5,11 +5,15 @@ import { setDrivers } from "../../store/driver/driverSlice";
 import { driverSelector } from "../../store/driver/driverSelectors";
 import { Column } from "../../components/Layout/Column/ColumnAtom";
 import { Row } from "../../components/Layout/Row/RowAtom";
-import { Container } from "../../components/Layout/Container/ContainerAtom";
+import {
+  Container,
+  ContainerFluid,
+} from "../../components/Layout/Container/ContainerAtom";
 import DriverCard from "../../components/Driver/Card/DriverCard";
 import axios from "axios";
 import { Driver } from "../../types/drivers";
 import { useEffect } from "react";
+import { Colors } from "../../types/variables";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const drivers = await axios.get(`${process.env.PUBLIC_BASE_URL}/api/drivers`);
@@ -37,17 +41,19 @@ const Home: NextPage<{ drivers: Driver[] }> = ({ drivers }) => {
       </Head>
 
       <main>
-        <Container>
-          {driversData.length && (
-            <Row>
-              {driversData.map((driver: Driver, index: number) => (
-                <Column key={index} size={12} md={6} lg={3}>
-                  <DriverCard data={driver} />
-                </Column>
-              ))}
-            </Row>
-          )}
-        </Container>
+        <ContainerFluid backgroundColor={Colors.Primary}>
+          <Container>
+            {driversData.length && (
+              <Row>
+                {driversData.map((driver: Driver, index: number) => (
+                  <Column key={index} size={12} md={6} lg={3}>
+                    <DriverCard data={driver} />
+                  </Column>
+                ))}
+              </Row>
+            )}
+          </Container>
+        </ContainerFluid>
       </main>
     </div>
   );
