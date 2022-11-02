@@ -4,6 +4,7 @@ import { Error } from "../../../../types/error";
 import {
   assignPlaceToDrivers,
   assignCustomPlaceToDrivers,
+  assignStaticImageToDrivers,
   setDriverData,
   getSortedDrivers,
 } from "../../../../lib/driverHandler";
@@ -28,7 +29,9 @@ export default async function handler(
         added ? Number(place) - Number(added) : Number(place) - 1
       } place`
     );
-    res.status(200).json(getSortedDrivers(objectData));
+    res
+      .status(200)
+      .json(getSortedDrivers(assignStaticImageToDrivers(objectData)));
   } else {
     res.status(405).json({ message: "Request Method not allowed" });
   }
