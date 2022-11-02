@@ -9,7 +9,7 @@ const nextConfig = {
       {
         source: "/",
         destination: "/drivers",
-        permanent: true,
+        permanent: false,
       },
     ];
   },
